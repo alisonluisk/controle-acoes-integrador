@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  user: postgres
+  username: postgres # Utilizado para acessar o banco (opção -U)
+  password: root
+  pool: 5
+
+development:
+  <<: *default
+  database: ibolsa_dev
+
+test:
+  <<: *default
+  database: ibolsa_test
+  host: ibolsa_db
+  password: iBolsa*2020
+
+production:
+  <<: *default
+  host: ibolsa_db
+  password: iBolsa*2020
