@@ -19,6 +19,9 @@ class DadosVenda
   field :codigoItemVenda, type: Integer
   field :dataVenda, type: DateTime
   field :codigoAcionista, type: Integer
+  field :codigoConvenio, type: Integer
+  field :codigoGrupo, type: Integer
+  field :nomeGrupo, type: String
 
   def self.update_or_create(attributes)
     obj = assign_or_new(attributes)
