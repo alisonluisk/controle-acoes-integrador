@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  # Mongo::Logger.logger.level = Logger::WARN
+  Mongo::Logger.logger.level = Logger::WARN
   require 'digest'
 
   def authenticate_with_secret_code!
