@@ -27,4 +27,19 @@ class Api::V1::DadosVendaController < ApplicationController
     end
   end
 
+  def cancelar
+    json = JSON.parse params["dadosVenda"]
+    # json = params[:dadosVenda]
+    # params.permit!
+    begin
+      venda = DadosVenda.where(codigoItemVenda: json["codigoItemVenda"], codigoVenda: json["codigoVenda"], codigoEmpresa: json["codigoEmpresa"])
+                  .destroy_all
+      render :nothing => true, status: 200
+    rescue => ex
+      ErroIntegracao.create(  codigoVenda: json["codigoVenda"], codigoItemVenda: json["codigoItemVenda"],
+                              erroIntegracao: ex.inspect)
+      puts ex
+      render :nothing => true, status: 500
+    end
+  end
 end

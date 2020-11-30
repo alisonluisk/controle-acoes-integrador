@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   #
    namespace :api, defaults: { format: :json }, path: '/api'  do
      namespace :v1, path: '/v1', constraints: ApiVersionConstraint.new(version: 1, default: true) do
-       resources :dados_venda, only: [:index, :create]
+       resources :dados_venda, only: [:index, :create] do
+         collection do
+           post 'cancelar'
+         end
+       end
      end
    end
 end
